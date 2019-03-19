@@ -1,8 +1,5 @@
 package com.ms.mvvm.interfaces
 
-import com.ms.mvvm.interfaces.IBaseModule
-
-
 interface IModuleLifecycleManager {
 
     fun registerModule(module: IBaseModule, lifecycleType: Int)

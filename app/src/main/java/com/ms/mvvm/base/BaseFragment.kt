@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ms.mvvm.MyApp
-import com.ms.mvvm.eventbus.IBaseEvent
-import com.ms.mvvm.eventbus.IEventBus
-import com.ms.mvvm.eventbus.IEventBusListener
 import com.ms.mvvm.injection.components.IViewModelComponent
 import com.ms.mvvm.interfaces.IApp
 import com.ms.mvvm.interfaces.IViewModel
@@ -16,7 +13,7 @@ import com.ms.mvvm.interfaces.IViewModelFactory
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-abstract class BaseFragment : Fragment(), IEventBusListener {
+abstract class BaseFragment : Fragment() {
 
     private var viewModel: IViewModel? = null
 
@@ -28,8 +25,6 @@ abstract class BaseFragment : Fragment(), IEventBusListener {
     @Inject
     lateinit var mRCApplication: IApp
 
-    @Inject
-    lateinit var mEventBus: IEventBus
 
     abstract fun getLayoutId(): Int
 
@@ -67,7 +62,6 @@ abstract class BaseFragment : Fragment(), IEventBusListener {
 
     override fun onResume() {
         super.onResume()
-        mSubscription.add(mEventBus.subscribe(this))
         if (viewModel != null)
             viewModel!!.onResume()
     }
@@ -93,7 +87,4 @@ abstract class BaseFragment : Fragment(), IEventBusListener {
             viewModel!!.onDestroy()
     }
 
-    override fun onEvent(baseEvent: IBaseEvent) {
-
-    }
 }

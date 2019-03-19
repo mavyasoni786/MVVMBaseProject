@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Context
 import android.content.ContextWrapper
 import com.ms.mvvm.base.factory.*
-import com.ms.mvvm.eventbus.EventBus
 import com.ms.mvvm.injection.modules.AppModule
 import com.ms.mvvm.interfaces.IApp
 import com.ms.mvvm.interfaces.IAppLifecycleCallback
@@ -38,17 +37,16 @@ class MyApp : Application(), IApp {
 
         initializeRCApplicationEssentials(this)
         instance = this
-        val eventBus = EventBus()
+
         appModule = AppModule(
             this,
             ComponentFactory(this),
             ViewModelFactory(),
             FragmentFactory(),
             ModuleLifecycleManager(),
-            SharedPreferenceWrapper(this),
-            eventBus
+            SharedPreferenceWrapper(this)
         )
-        registerActivityLifecycleCallbacks(mLifecycleCallbacks);
+        registerActivityLifecycleCallbacks(mLifecycleCallbacks)
         mRCPlatform = AppPlatformLayer(appModule)
     }
 

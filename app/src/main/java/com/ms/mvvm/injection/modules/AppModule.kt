@@ -5,8 +5,6 @@ import com.ms.mvvm.interfaces.*
 import com.ms.mvvm.base.factory.ComponentFactory
 import com.ms.mvvm.base.factory.ModuleLifecycleManager
 import com.ms.mvvm.base.factory.SharedPreferenceWrapper
-import com.ms.mvvm.eventbus.EventBus
-import com.ms.mvvm.eventbus.IEventBus
 import dagger.Module
 import dagger.Provides
 
@@ -16,8 +14,7 @@ class AppModule(var iApp: IApp,
                 var mViewModelFactory: IViewModelFactory,
                 var mFragmentFactory: IFragmentFactory,
                 var mLifecycleManager: ModuleLifecycleManager,
-                var mSharedPreferenceWrapper: SharedPreferenceWrapper,
-                var mEventBus: EventBus
+                var mSharedPreferenceWrapper: SharedPreferenceWrapper
 ) {
 
     @Provides
@@ -45,10 +42,6 @@ class AppModule(var iApp: IApp,
         return mFragmentFactory
     }
 
-    @Provides
-    fun getEventBus(): IEventBus {
-        return mEventBus
-    }
 
     @Provides
     fun getLifecycleManager(): IModuleLifecycleManager {
@@ -61,7 +54,6 @@ class AppModule(var iApp: IApp,
     }
 
     fun cleanup() {
-        mEventBus.cleanup()
         mLifecycleManager.cleanup()
     }
 }
