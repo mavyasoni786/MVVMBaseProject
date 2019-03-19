@@ -3,6 +3,7 @@ package com.ms.mvvm.base.factory
 
 import com.ms.mvvm.interfaces.IBaseModule
 import com.ms.mvvm.interfaces.IModuleLifecycleManager
+import com.ms.mvvm.utils.Trace
 import java.util.*
 import javax.inject.Inject
 
@@ -18,7 +19,7 @@ constructor() : IModuleLifecycleManager {
     }
 
     fun cleanup() {
-//        Trace.logFunc()
+        Trace.logFunc()
         for (i in mLifeCycleLevels!!.indices) {
             if (!mLifeCycleLevels!![i]!!.hasRegisteredModules()) {
                 throw IllegalStateException("modules haven't been cleaned up at level = " + i)
@@ -29,14 +30,14 @@ constructor() : IModuleLifecycleManager {
     }
 
     override fun registerModule(module: IBaseModule, lifecycleType: Int) {
-//        Trace.logFuncWithMessage("module name = %s, lifecycleType = %s",
-//                module.javaClass.canonicalName, lifeCycleLevelToString(lifecycleType))
+        Trace.logFuncWithMessage("module name = %s, lifecycleType = %s",
+                module.javaClass.canonicalName, lifeCycleLevelToString(lifecycleType))
         verifyLifecycleIsWithinLimits(lifecycleType)
         mLifeCycleLevels!![lifecycleType]!!.registerModule(module)
     }
 
     override fun resetAndRemoveModules(lifecycleType: Int) {
-//        Trace.logFuncWithMessage("lifecycleType = %s", lifeCycleLevelToString(lifecycleType))
+        Trace.logFuncWithMessage("lifecycleType = %s", lifeCycleLevelToString(lifecycleType))
         verifyLifecycleIsWithinLimits(lifecycleType)
         mLifeCycleLevels!![lifecycleType]!!.resetAndRemoveModules()
     }
@@ -59,7 +60,7 @@ constructor() : IModuleLifecycleManager {
 
         internal fun resetAndRemoveModules() {
             for (m in mModulesAtLevel) {
-//                Trace.info("cleaning up module = %s", m.javaClass.canonicalName.toString())
+                Trace.info("cleaning up module = %s", m.javaClass.canonicalName.toString())
                 m.cleanupModule()
             }
             mModulesAtLevel.clear()

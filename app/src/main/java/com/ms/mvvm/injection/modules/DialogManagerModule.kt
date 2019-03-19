@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class DialogManagerModule {
     @Singleton
     @Provides
-    internal fun getUserManager(component: DialogManager, lifecycleManager: IModuleLifecycleManager): IDialogManager {
+    internal fun getDialogManager(component: DialogManager, lifecycleManager: IModuleLifecycleManager): IDialogManager {
         lifecycleManager.registerModule(component, IModuleLifecycleManager.APPLICATION_LIFECYCLE_COMPONENT)
         return component
     }
