@@ -63,10 +63,6 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
-    //mvvm
-//    kapt "androidx.databinding:databinding-compiler:$gradle_version"
-//    kapt "com.android.databinding:compiler:$gradle_version"
-
     //RxJava2
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
@@ -75,7 +71,6 @@ dependencies {
 
     // Timber for logging
     implementation 'com.jakewharton.timber:timber:4.7.0'
-
     //gson
     implementation "com.google.code.gson:gson:$gson_version"
 

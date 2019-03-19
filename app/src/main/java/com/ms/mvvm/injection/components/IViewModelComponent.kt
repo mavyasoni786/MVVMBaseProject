@@ -1,10 +1,11 @@
 package com.ms.mvvm.injection.components
 
+import com.ms.mvvm.home.DashboardViewModel
+import com.ms.mvvm.home.home.HomeViewModel
 import com.ms.mvvm.injection.scope.ActivityScope
 
 import com.ms.mvvm.injection.modules.AppModule
 import com.ms.mvvm.injection.modules.ActivityViewModelModule
-import com.ms.mvvm.injection.modules.DialogManagerModule
 import com.ms.mvvm.splash.SplashViewModel
 
 import dagger.Component
@@ -18,5 +19,7 @@ import dagger.Component
 interface IViewModelComponent {
 
     fun inject(model: SplashViewModel)
+    fun inject(model: DashboardViewModel)
+    fun inject(model: HomeViewModel)
 
 }
