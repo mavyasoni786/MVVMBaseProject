@@ -6,6 +6,7 @@ import com.ms.mvvm.base.BaseFragment
 import com.ms.mvvm.base.factory.PlatformObjectsThatNeedAppWideLifetime
 import com.ms.mvvm.injection.modules.AppModule
 import com.ms.mvvm.injection.modules.DialogManagerModule
+import com.ms.mvvm.manager.dialog.IDialogManager
 import dagger.Component
 import javax.inject.Singleton
 
@@ -17,7 +18,7 @@ import javax.inject.Singleton
 interface IPlatformLifetimeComponent {
 
 
-//    fun getDialogManager(): IDialogManager
+    fun getDialogManager(): IDialogManager
 
     fun inject(baseActivity: BaseActivity)
 
