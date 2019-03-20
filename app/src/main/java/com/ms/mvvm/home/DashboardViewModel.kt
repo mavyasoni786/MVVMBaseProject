@@ -10,6 +10,11 @@ class DashboardViewModel(iViewModelComponent: IViewModelComponent) : BaseViewMod
     }
 
     init {
-        mAttachedActivity
+//        mAttachedActivity.addFragment(BaseFragmentState.HOME,null)
+//        mAttachedActivity.replaceFragment(BaseFragmentState.HOME,null)
+//        mAttachedActivity.startActivityWithBundle()
+//        mAttachedActivity.getBaseFragmentManager().
+//        mAttachedActivity.getActivity()
+
     }
 }

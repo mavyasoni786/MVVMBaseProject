@@ -40,7 +40,7 @@ class BaseFragmentManager(private val activity: BaseActivity, private val contai
         }
     }
 
-    fun <T> replaceFragment(fragmentEnum: BaseFragmentState, keys: T?, isAnimation: Boolean) {
+    fun <T> replaceFragment(fragmentEnum: BaseFragmentState, keys: Any?, isAnimation: Boolean) {
         ft = fragmentManager.beginTransaction()
         for (i in 0..stack.size) {
             if (!stack.isEmpty()) {

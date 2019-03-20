@@ -7,10 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.ms.mvvm.base.BaseActivity
+import com.ms.mvvm.base.BaseFragment
+import com.ms.mvvm.base.BaseFragmentManager
+import com.ms.mvvm.base.BaseFragmentState
 import com.ms.mvvm.interfaces.IViewModelToActivityFactory
 import java.lang.ref.WeakReference
 
 class ViewModelToActivityFactory(weakActivity: BaseActivity) : IViewModelToActivityFactory {
+
 
     private var weakActivity: WeakReference<BaseActivity> = WeakReference(weakActivity)
 
@@ -91,6 +95,22 @@ class ViewModelToActivityFactory(weakActivity: BaseActivity) : IViewModelToActiv
         if (isAddToBackStack)
             ft.addToBackStack(fragment.javaClass.simpleName)
         ft.commit()
+    }
+
+    override fun getBaseFragmentManager(): BaseFragmentManager {
+        val activity = weakActivity.get()
+        return if (activity != null && !activity.isFinishing) {
+            activity.mBaseFragmentManager!!
+        } else null!!
+    }
+
+
+    override fun addFragment(mBaseFragmentState: BaseFragmentState, keys: Any?, isAnimation: Boolean) {
+        getBaseFragmentManager().addFragment<BaseFragment>(mBaseFragmentState, keys, isAnimation)
+    }
+
+    override fun replaceFragment(mBaseFragmentState: BaseFragmentState, keys: Any?, isAnimation: Boolean) {
+        getBaseFragmentManager().replaceFragment<BaseFragment>(mBaseFragmentState, keys, isAnimation)
     }
 
 }

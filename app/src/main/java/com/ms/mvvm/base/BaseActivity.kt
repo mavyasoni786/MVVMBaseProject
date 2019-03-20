@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ms.mvvm.MyApp
+import com.ms.mvvm.R
 import com.ms.mvvm.base.factory.PlatformObjectsThatNeedAppWideLifetime
 import com.ms.mvvm.injection.components.IViewModelComponent
 import com.ms.mvvm.injection.modules.ActivityViewModelModule
@@ -13,6 +14,7 @@ import com.ms.mvvm.interfaces.IViewModel
 import com.ms.mvvm.interfaces.IViewModelFactory
 import com.ms.mvvm.utils.PermissionUtils
 import com.ms.mvvm.utils.Trace
+import kotlinx.android.synthetic.main.activity_main.view.*
 import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -39,6 +41,9 @@ abstract class BaseActivity : AppCompatActivity() {
         private set
     var savedInstanceState: Bundle? = null
 
+    var mBaseFragmentManager : BaseFragmentManager?=null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         permissionUtils = PermissionUtils(this)
@@ -48,7 +53,7 @@ abstract class BaseActivity : AppCompatActivity() {
             .getApplicationLifetimeComponent()
         platformLifetimeComponent.inject(this)
         mObjects.inject(platformLifetimeComponent)
-
+        mBaseFragmentManager = BaseFragmentManager(this, R.id.container)
          viewModelComponent = mRCApplication
             .getApplicationModule()
             .getComponentFactory()

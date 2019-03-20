@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.ms.mvvm.base.BaseFragmentManager
+import com.ms.mvvm.base.BaseFragmentState
 
 interface IViewModelToActivityFactory {
 
@@ -24,7 +26,13 @@ interface IViewModelToActivityFactory {
 
     fun getFragmentManager(): FragmentManager
 
+    fun getBaseFragmentManager(): BaseFragmentManager
+
     fun attachFragment(containerId: Int, isAddToBackStack: Boolean, baseFragment: Fragment)
+
+    fun addFragment(mBaseFragmentState: BaseFragmentState, keys: Any?, isAnimation: Boolean = false)
+
+    fun replaceFragment(mBaseFragmentState: BaseFragmentState, keys: Any?, isAnimation: Boolean = false)
 
     fun addFragment(containerId: Int, isAddToBackStack: Boolean, previousFragment: Fragment, fragment: Fragment)
 }

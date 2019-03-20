@@ -43,7 +43,6 @@ class SplashViewModel(iViewModelComponent: IViewModelComponent) : BaseViewModel(
         Handler().postDelayed({
             mDialogManager.dismissProgressDialog()
         },5000)
-
     }
 
 
